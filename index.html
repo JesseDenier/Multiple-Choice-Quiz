@@ -8,8 +8,8 @@
   </head>
   <body>
     <header>
-      <p class="viewHighScores">View high scores</p>
-      <p class="timeRemaining">Time Remaining: <span id="timeLeft">60</span></p>
+      <h2 id="viewHighScores">View high scores</h2>
+      <h2 id="timeLeft">Time: 60</h2>
     </header>
     <main>
       <div id="quizContainer">
@@ -17,8 +17,9 @@
         <div id="questionContainer">
           <!-- Questions and options will be dynamically added here -->
         </div>
-        <button onclick="submitQuiz()">Start Quiz</button>
+        <button id="startQuiz">Start Quiz</button>
       </div>
     </main>
+    <script src="script.js"></script>
   </body>
 </html>

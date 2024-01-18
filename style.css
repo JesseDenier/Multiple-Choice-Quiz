@@ -2,9 +2,10 @@
 
 body {
   font-family: Arial, sans-serif;
+  margin: 0px;
 }
 
-.viewHighScores {
+#viewHighScores {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +13,7 @@ body {
   margin-left: 20px;
 }
 
-.timeRemaining {
+#timeLeft {
   position: fixed;
   top: 0;
   right: 0;

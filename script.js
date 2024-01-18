@@ -1,8 +1,23 @@
-// Add your JavaScript logic here for handling the quiz and timer
-// You can use JavaScript to dynamically generate questions and options
-// and handle the timer functionality.
-
-// Example function for submitting the quiz
-function submitQuiz() {
-  // Add your logic for quiz submission
+// Connect all references by ID between HTML and Javascript.
+function getElementById(id) {
+  return document.querySelector("#" + id);
 }
+
+// Sets seconds to 60.
+var seconds = 60;
+
+// Removes 1 second from seconds every second, and displays that number in the timeLeft element in HTML.
+function timer() {
+  var timerInterval = setInterval(function () {
+    seconds--;
+    timeLeft.textContent = "Time: " + seconds;
+    // When seconds hits 0 it runs a new the endQuiz function and stops the timer function.
+    if (seconds === 0) {
+      clearInterval(timerInterval);
+      endQuiz();
+    }
+  }, 1000);
+}
+
+// Begins the timer when the startQuiz button is clicked.
+startQuiz.addEventListener("click", timer);
