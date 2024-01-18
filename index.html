@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" a href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
     <title>Timed Quiz</title>
   </head>
   <body>
@@ -13,12 +19,15 @@
       <h2 class="score">Score: <span id="score">0</span></h2>
     </header>
     <main>
-      <div id="quizContainer">
-        <h1>Coding Quiz Challenge</h1>
-        <p>
-          Every correct answer is worth 1 point.<br />Every incorrect answer
-          removes 5 seconds from the timer.<br />See how high you can get!
-        </p>
+      <div>
+        <div id="startQuizContainer">
+          <h1>Coding Quiz Challenge</h1>
+          <p>
+            Every correct answer is worth 1 point.<br />Every incorrect answer
+            removes 5 seconds from the timer.<br />See how high you can get!
+          </p>
+          <button id="startQuiz">Start Quiz</button>
+        </div>
         <!-- Questions are added here through Javascript.-->
         <div id="questionContainer"></div>
         <!-- Answers are added here through Javascipt.-->
@@ -28,7 +37,6 @@
           <button class="answer" id="answerContainerC"></button>
           <button class="answer" id="answerContainerD"></button>
         </div>
-        <button id="startQuiz">Start Quiz</button>
       </div>
     </main>
     <footer>

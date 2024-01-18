@@ -8,7 +8,8 @@ function getElementById(id) {
 function quizEnd() {
   questionContainer.textContent = "Game Over: Your score is X.";
   answerContainer.style.display = "none";
-  startQuiz.style.display = "inline-block";
+  startQuizContainer.style.display = "inline-block";
+  startQuiz.textContent = "Try again";
 }
 
 var timerInterval;
@@ -106,7 +107,7 @@ function newQuestion() {
 function firstQuestion() {
   i = 0;
   console.log(i);
-  startQuiz.style.display = "none";
+  startQuizContainer.style.display = "none";
   answerContainer.style.display = "flex";
   newQuestion();
 }
