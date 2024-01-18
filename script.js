@@ -142,8 +142,8 @@ function checkAnswer() {
   newQuestion();
 }
 
-// The fadeOut functions were created by ChatGPT and adapted by Jesse Denier.
-// They create Correct! and Wrong! HTML elements, drop the opacity, and delete them over .5 seconds.
+// The fadeOut functions were initially created by ChatGPT and adapted by Jesse Denier.
+// They create fixed HTML elements, drop the opacity, and delete them over .5 seconds.
 function fadeOutCorrect(element) {
   var opacity = 1;
   var interval = 50;
@@ -155,16 +155,24 @@ function fadeOutCorrect(element) {
   correctMessage.id = "correctMessage";
   correctMessage.classList.add("checkMessage");
 
-  // Append the new h2 element to the document
+  // Create a new h2 element
+  var plusOne = document.createElement("h2");
+  plusOne.textContent = " +1";
+  plusOne.id = "plusOne";
+
+  // Append the new h2 elements to the document
   document.body.appendChild(correctMessage);
+  document.body.appendChild(plusOne);
 
   var fadeOutInterval = setInterval(function () {
     if (opacity > 0) {
       opacity -= interval / duration;
       correctMessage.style.opacity = opacity;
+      plusOne.style.opacity = opacity;
     } else {
       // Remove the h2 element from the document when fading is complete
       document.body.removeChild(correctMessage);
+      document.body.removeChild(plusOne);
       clearInterval(fadeOutInterval);
     }
   }, interval);
@@ -181,16 +189,24 @@ function fadeOutWrong(element) {
   wrongMessage.id = "wrongMessage";
   wrongMessage.classList.add("checkMessage");
 
-  // Append the new h2 element to the document
+  // Create a new h2 element
+  var minusFive = document.createElement("h2");
+  minusFive.textContent = "-5";
+  minusFive.id = "minusFive";
+
+  // Append the new h2 elements to the document
   document.body.appendChild(wrongMessage);
+  document.body.appendChild(minusFive);
 
   var fadeOutInterval = setInterval(function () {
     if (opacity > 0) {
       opacity -= interval / duration;
       wrongMessage.style.opacity = opacity;
+      minusFive.style.opacity = opacity;
     } else {
       // Remove the h2 element from the document when fading is complete
-      document.body.removeChild(wrongtMessage);
+      document.body.removeChild(wrongMessage);
+      document.body.removeChilde(minusFive);
       clearInterval(fadeOutInterval);
     }
   }, interval);
