@@ -8,21 +8,30 @@ function getElementById(id) {
 function quizEnd() {
   questionContainer.textContent = "Game Over: Your score is X.";
   answerContainer.style.display = "none";
-  startQuiz.style.display = "inline-block";
+  startQuizContainer.style.display = "inline-block";
+  startQuiz.textContent = "Try again";
 }
 
-// Removes 1 second from seconds every second, and displays that number in the timeLeft element in HTML.
+var timerInterval;
+var isTimerActive = false;
+
+// Removes 1 second from seconds every second, and displays that number in the timeLeft element in HTML. If timer is active, resets the timer.
 function timer() {
+  if (isTimerActive === true) {
+    clearInterval(timerInterval);
+  }
   var seconds = 60;
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     seconds--;
-    timeLeft.textContent = "Time: " + seconds;
+    timeLeft.textContent = seconds;
     // When seconds hits 0 it runs a new the endQuiz function and stops the timer function.
     if (seconds === 0) {
       clearInterval(timerInterval);
+      isTimerActive = false;
       quizEnd();
     }
   }, 1000);
+  isTimerActive = true;
 }
 
 // Builds an array of questions which can be dynamically drawn from.
@@ -89,6 +98,8 @@ function newQuestion() {
     i++;
   } else {
     quizEnd();
+    clearInterval(timerInterval);
+    isTimerActive = false;
   }
 }
 
@@ -96,7 +107,7 @@ function newQuestion() {
 function firstQuestion() {
   i = 0;
   console.log(i);
-  startQuiz.style.display = "none";
+  startQuizContainer.style.display = "none";
   answerContainer.style.display = "flex";
   newQuestion();
 }
