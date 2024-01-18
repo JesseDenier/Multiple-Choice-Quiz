@@ -11,18 +11,26 @@ function quizEnd() {
   startQuiz.style.display = "inline-block";
 }
 
-// Removes 1 second from seconds every second, and displays that number in the timeLeft element in HTML.
+var timerInterval;
+var isTimerActive = false;
+
+// Removes 1 second from seconds every second, and displays that number in the timeLeft element in HTML. If timer is active, resets the timer.
 function timer() {
+  if (isTimerActive === true) {
+    clearInterval(timerInterval);
+  }
   var seconds = 60;
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     seconds--;
     timeLeft.textContent = "Time: " + seconds;
     // When seconds hits 0 it runs a new the endQuiz function and stops the timer function.
     if (seconds === 0) {
       clearInterval(timerInterval);
+      isTimerActive = false;
       quizEnd();
     }
   }, 1000);
+  isTimerActive = true;
 }
 
 // Builds an array of questions which can be dynamically drawn from.
@@ -89,6 +97,8 @@ function newQuestion() {
     i++;
   } else {
     quizEnd();
+    clearInterval(timerInterval);
+    isTimerActive = false;
   }
 }
 
