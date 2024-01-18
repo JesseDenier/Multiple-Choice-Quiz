@@ -3,17 +3,20 @@ function getElementById(id) {
   return document.querySelector("#" + id);
 }
 
+// States the timer isn't active so future function can turn it on.
+var isTimerActive = false;
+
+// Defines score so future functions can affect it.
+var points = 0;
+score.textContent = points;
+
 // Removes question from questionContainer and displays final score.
-// TODO: Replace X with score.
 function quizEnd() {
-  questionContainer.textContent = "Game Over: Your score is X.";
+  questionContainer.textContent = "Game Over: Your score is " + points + ".";
   answerContainer.style.display = "none";
   startQuizContainer.style.display = "inline-block";
   startQuiz.textContent = "Try again";
 }
-
-var timerInterval;
-var isTimerActive = false;
 
 // Removes 1 second from seconds every second, and displays that number in the timeLeft element in HTML. If timer is active, resets the timer.
 function timer() {
@@ -106,15 +109,16 @@ function newQuestion() {
 // Resets and begins the quiz.
 function firstQuestion() {
   i = 0;
-  console.log(i);
   startQuizContainer.style.display = "none";
   answerContainer.style.display = "flex";
   newQuestion();
 }
 
-// Checks if answer is correct, and either adds +1 to score or -5 to timer.
+// TODO: Checks if answer is correct, and either adds +1 to score or -5 to timer.
 function checkAnswer() {
-  // TODO: Add a function that checks if an answer is correct.
+  //if ((answer.correct = true)) {
+  // }
+
   newQuestion();
 }
 
