@@ -22,7 +22,7 @@ function timer() {
   var seconds = 60;
   timerInterval = setInterval(function () {
     seconds--;
-    timeLeft.textContent = "Time: " + seconds;
+    timeLeft.textContent = seconds;
     // When seconds hits 0 it runs a new the endQuiz function and stops the timer function.
     if (seconds === 0) {
       clearInterval(timerInterval);

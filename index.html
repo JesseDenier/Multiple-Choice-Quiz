@@ -9,11 +9,16 @@
   <body>
     <header>
       <h2 id="viewHighScores">View high scores</h2>
-      <h2 id="timeLeft">Time: 60</h2>
+      <h2 class="timeLeft">Time: <span id="timeLeft">60</span></h2>
+      <h2 class="score">Score: <span id="score">0</span></h2>
     </header>
     <main>
       <div id="quizContainer">
-        <h1>Coding Quiz</h1>
+        <h1>Coding Quiz Challenge</h1>
+        <p>
+          Every correct answer is worth 1 point.<br />Every incorrect answer
+          removes 5 seconds from the timer.<br />See how high you can get!
+        </p>
         <!-- Questions are added here through Javascript.-->
         <div id="questionContainer"></div>
         <!-- Answers are added here through Javascipt.-->
@@ -26,6 +31,9 @@
         <button id="startQuiz">Start Quiz</button>
       </div>
     </main>
+    <footer>
+      <h2 class="score">Score: <span id="score">0</span></h2>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>

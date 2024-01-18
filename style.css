@@ -3,6 +3,11 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0px;
+  background-color: rgb(229, 222, 202);
+}
+
+h2 {
+  font-size: calc(1vw + 18px);
 }
 
 #viewHighScores {
@@ -13,12 +18,20 @@ body {
   margin-left: 20px;
 }
 
-#timeLeft {
+.timeLeft {
   position: fixed;
   top: 0;
   right: 0;
   margin-top: 20px;
   margin-right: 20px;
+}
+
+.score {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 main {
@@ -40,8 +53,15 @@ main {
   align-items: center;
 }
 
+button {
+  margin: 10px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
 .answer {
   display: block;
-  text-align: center;
-  margin: 10px;
+  width: 30vw;
 }
