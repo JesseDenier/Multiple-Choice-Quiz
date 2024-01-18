@@ -1,5 +1,10 @@
 @import url(normalize.css);
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 body {
   font-family: "Inconsolata", monospace;
   margin: 0px;
@@ -11,10 +16,10 @@ h2 {
   font-size: calc(1vw + 18px);
 }
 
-#viewHighScores {
+footer {
   position: fixed;
   bottom: 0;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
 }
