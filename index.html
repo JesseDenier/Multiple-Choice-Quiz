@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" a href="style.css" />
+    <title>Timed Quiz</title>
+  </head>
+  <body>
+    <header>
+      <h2 id="viewHighScores">View high scores</h2>
+      <h2 id="timeLeft">Time: 60</h2>
+    </header>
+    <main>
+      <div id="quizContainer">
+        <h1>Coding Quiz</h1>
+        <!-- Questions are added here through Javascript.-->
+        <div id="questionContainer"></div>
+        <!-- Answers are added here through Javascipt.-->
+        <div id="answerContainer">
+          <button class="answer" id="answerContainerA"></button>
+          <button class="answer" id="answerContainerB"></button>
+          <button class="answer" id="answerContainerC"></button>
+          <button class="answer" id="answerContainerD"></button>
+        </div>
+        <button id="startQuiz">Start Quiz</button>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
