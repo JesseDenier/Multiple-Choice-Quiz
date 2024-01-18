@@ -3,8 +3,11 @@ function getElementById(id) {
   return document.querySelector("#" + id);
 }
 
-// TODO: Build this function out so it displays your score.
-function endQuiz() {}
+// Removes question from questionContainer and displays final score.
+// TODO: Replace X with score.
+function quizEnd() {
+  questionContainer.textContent = "Game Over: Your score is X.";
+}
 
 // Sets seconds to 60.
 var seconds = 60;
@@ -17,27 +20,34 @@ function timer() {
     // When seconds hits 0 it runs a new the endQuiz function and stops the timer function.
     if (seconds === 0) {
       clearInterval(timerInterval);
-      endQuiz();
+      quizEnd();
     }
   }, 1000);
 }
 
-var questions = ["a", "b", "c", "d", "e", "f"];
+// Builds an array of questions which can be dynamically drawn from.
+var questions = [
+  "What does HTML stand for?",
+  "What does CSS stand for?",
+  "What does HTML do?",
+  "What does CSS do?",
+  "What does javascript do?",
+];
 
 var i = 0;
 
-//TODO: Build this function out so it wipes everything in questionContainer and populates it with a new question.
+// Populates questionContainer with a new question until out of questions.
 function newQuestion() {
   if (i < questions.length) {
     questionContainer.textContent = questions[i];
     i++;
   } else {
-    questionContainer.textContent = "Quiz Complete";
+    quizEnd();
   }
 }
 
 // Begins the timer when the startQuiz button is clicked.
 startQuiz.addEventListener("click", timer);
 
-// Displays a question when the startQuiz button is clicked.
+// Displays a new question when the startQuiz button is clicked.
 startQuiz.addEventListener("click", newQuestion);
