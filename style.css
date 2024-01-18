@@ -32,3 +32,16 @@ main {
 #quizContainer {
   text-align: center;
 }
+
+#answerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.answer {
+  display: block;
+  text-align: center;
+  margin: 10px;
+}
