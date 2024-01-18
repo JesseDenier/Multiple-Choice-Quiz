@@ -10,12 +10,28 @@ var isTimerActive = false;
 var points = 0;
 score.textContent = points;
 
-// Removes question from questionContainer and displays final score.
+function submit() {}
+
+// Removes question from questionContainer, displays final score, and calls the submit function.
 function quizEnd() {
-  questionContainer.textContent = "Game Over: Your score is " + points + ".";
+  questionContainer.style.display = "none";
   answerContainer.style.display = "none";
-  startQuizContainer.style.display = "inline-block";
-  startQuiz.textContent = "Try again";
+  // Create elements.
+  var scoreMessage = document.createElement("h3");
+  scoreMessage.textContent = "Game Over: Your score is " + points + "!";
+  var initialsMessage = document.createElement("h3");
+  initialsMessage.textContent = "Enter Initials: ";
+  var initials = document.createElement("input");
+  var submitBtn = document.createElement("button");
+  submitBtn.textContent = "Submit";
+  // Attach elements.
+  main.appendChild(scoreMessage);
+  main.appendChild(initialsMessage);
+  main.appendChild(initials);
+  main.appendChild(submitBtn);
+
+  // Submits score when submitBtn is clicked.
+  submitBtn.addEventListener("click", submit);
 }
 
 var seconds = 60;
