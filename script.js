@@ -18,17 +18,19 @@ function quizEnd() {
   startQuiz.textContent = "Try again";
 }
 
+var seconds = 60;
+
 // Removes 1 second from seconds every second, and displays that number in the timeLeft element in HTML. If timer is active, resets the timer.
 function timer() {
   if (isTimerActive === true) {
     clearInterval(timerInterval);
   }
-  var seconds = 60;
+  seconds = 60;
   timerInterval = setInterval(function () {
     seconds--;
     timeLeft.textContent = seconds;
     // When seconds hits 0 it runs a new the endQuiz function and stops the timer function.
-    if (seconds === 0) {
+    if (seconds <= 0) {
       clearInterval(timerInterval);
       isTimerActive = false;
       quizEnd();
@@ -88,15 +90,20 @@ var questions = [
 
 var i = 0;
 
-// Populates questionContainer with a new question until out of questions.
-// TODO: Need to add the correct boolean element to each answer.
+// Populates questionContainer with a new question and answers until out of questions.
 function newQuestion() {
   if (i < questions.length) {
     questionContainer.textContent = questions[i].question;
+
     answerContainerA.textContent = questions[i].answers[0].text;
     answerContainerB.textContent = questions[i].answers[1].text;
     answerContainerC.textContent = questions[i].answers[2].text;
     answerContainerD.textContent = questions[i].answers[3].text;
+    // Attaches the correct boolean value to each answerContainer.
+    answerContainerA.dataset.correct = questions[i].answers[0].correct;
+    answerContainerB.dataset.correct = questions[i].answers[1].correct;
+    answerContainerC.dataset.correct = questions[i].answers[2].correct;
+    answerContainerD.dataset.correct = questions[i].answers[3].correct;
 
     i++;
   } else {
@@ -109,17 +116,84 @@ function newQuestion() {
 // Resets and begins the quiz.
 function firstQuestion() {
   i = 0;
+  points = 0;
+  score.textContent = points;
   startQuizContainer.style.display = "none";
   answerContainer.style.display = "flex";
   newQuestion();
 }
 
-// TODO: Checks if answer is correct, and either adds +1 to score or -5 to timer.
+// Checks if answer is correct, and either adds +1 to score or -5 to timer.
 function checkAnswer() {
-  //if ((answer.correct = true)) {
-  // }
-
+  var selectedAnswer = event.target;
+  if (selectedAnswer.dataset.correct === "true") {
+    points++;
+    score.textContent = points;
+    setTimeout(function () {
+      fadeOutCorrect();
+    }, 0);
+  } else {
+    seconds -= 5;
+    timeLeft.textContent = seconds;
+    setTimeout(function () {
+      fadeOutWrong();
+    }, 0);
+  }
   newQuestion();
+}
+
+// The fadeOut functions were created by ChatGPT and adapted by Jesse Denier.
+// They create Correct! and Wrong! HTML elements, drop the opacity, and delete them over .5 seconds.
+function fadeOutCorrect(element) {
+  var opacity = 1;
+  var interval = 50;
+  var duration = 500;
+
+  // Create a new h2 element
+  var correctMessage = document.createElement("h2");
+  correctMessage.textContent = "Correct";
+  correctMessage.id = "correctMessage";
+  correctMessage.classList.add("checkMessage");
+
+  // Append the new h2 element to the document
+  document.body.appendChild(correctMessage);
+
+  var fadeOutInterval = setInterval(function () {
+    if (opacity > 0) {
+      opacity -= interval / duration;
+      correctMessage.style.opacity = opacity;
+    } else {
+      // Remove the h2 element from the document when fading is complete
+      document.body.removeChild(correctMessage);
+      clearInterval(fadeOutInterval);
+    }
+  }, interval);
+}
+
+function fadeOutWrong(element) {
+  var opacity = 1;
+  var interval = 50;
+  var duration = 500;
+
+  // Create a new h2 element
+  var wrongMessage = document.createElement("h2");
+  wrongMessage.textContent = "Wrong";
+  wrongMessage.id = "wrongMessage";
+  wrongMessage.classList.add("checkMessage");
+
+  // Append the new h2 element to the document
+  document.body.appendChild(wrongMessage);
+
+  var fadeOutInterval = setInterval(function () {
+    if (opacity > 0) {
+      opacity -= interval / duration;
+      wrongMessage.style.opacity = opacity;
+    } else {
+      // Remove the h2 element from the document when fading is complete
+      document.body.removeChild(wrongtMessage);
+      clearInterval(fadeOutInterval);
+    }
+  }, interval);
 }
 
 // checks the answer and displays a new question when an answer is clicked.
