@@ -7,17 +7,13 @@ function getElementById(id) {
 // TODO: Replace X with score.
 function quizEnd() {
   questionContainer.textContent = "Game Over: Your score is X.";
-  answerContainerA.textContent = "";
-  answerContainerB.textContent = "";
-  answerContainerC.textContent = "";
-  answerContainerD.textContent = "";
+  answerContainer.style.display = "none";
+  startQuiz.style.display = "inline-block";
 }
-
-// Sets seconds to 60.
-var seconds = 60;
 
 // Removes 1 second from seconds every second, and displays that number in the timeLeft element in HTML.
 function timer() {
+  var seconds = 60;
   var timerInterval = setInterval(function () {
     seconds--;
     timeLeft.textContent = "Time: " + seconds;
@@ -96,11 +92,30 @@ function newQuestion() {
   }
 }
 
-// TODO: Add a function that checks if each answer is correct.
-function checkAnswers() {}
+// Resets and begins the quiz.
+function firstQuestion() {
+  i = 0;
+  console.log(i);
+  startQuiz.style.display = "none";
+  answerContainer.style.display = "flex";
+  newQuestion();
+}
+
+// Checks if answer is correct, and either adds +1 to score or -5 to timer.
+function checkAnswer() {
+  // TODO: Add a function that checks if an answer is correct.
+  newQuestion();
+}
+
+// checks the answer and displays a new question when an answer is clicked.
+answerContainer.addEventListener("click", function (event) {
+  if (event.target.tagName === "BUTTON") {
+    checkAnswer();
+  }
+});
 
 // Begins the timer when the startQuiz button is clicked.
 startQuiz.addEventListener("click", timer);
 
 // Displays a new question when the startQuiz button is clicked.
-startQuiz.addEventListener("click", newQuestion);
+startQuiz.addEventListener("click", firstQuestion);
