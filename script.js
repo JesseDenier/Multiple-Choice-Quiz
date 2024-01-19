@@ -10,7 +10,23 @@ var isTimerActive = false;
 var points = 0;
 score.textContent = points;
 
-function submit() {}
+// Defines initials before quizEnd or submit functions so it's dynamic for both.
+var initials = document.createElement("input");
+
+// Takes the initials, score, and date/time from local storage and adds it to high scores list.
+function addScore() {}
+
+// Adds your initials, score, and the date/time to local storage.
+// TODO: Make it take you to high scores
+function submit() {
+  var userPoints = {
+    user: initials.value,
+    points: points,
+    date: new Date().toLocaleString(),
+  };
+  localStorage.setItem("userPoints", JSON.stringify(userPoints));
+  addScore();
+}
 
 // Removes question from questionContainer, displays final score, and calls the submit function.
 function quizEnd() {
@@ -21,7 +37,6 @@ function quizEnd() {
   scoreMessage.textContent = "Game Over: Your score is " + points + "!";
   var initialsMessage = document.createElement("h3");
   initialsMessage.textContent = "Enter Initials: ";
-  var initials = document.createElement("input");
   var submitBtn = document.createElement("button");
   submitBtn.textContent = "Submit";
   // Attach elements.
@@ -173,7 +188,7 @@ function fadeOutWrong(element) {
     } else {
       // Remove the h2 element from the document when fading is complete
       document.body.removeChild(wrongMessage);
-      document.body.removeChilde(minusFive);
+      document.body.removeChild(minusFive);
       clearInterval(fadeOutInterval);
     }
   }, interval);
