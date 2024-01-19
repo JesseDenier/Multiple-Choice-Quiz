@@ -146,7 +146,7 @@ function fadeOutWrong() {
 }
 
 // Checks if answer is correct, adding +1 to score or -5 to timer, and triggering fadeOut functions. Then begins the Next Question Function.
-function checkAnswerFunc() {
+function checkAnswerFunc(event) {
   if ($(event.target).data("correct")) {
     points++;
     $("#score").text(points);
@@ -160,6 +160,6 @@ function checkAnswerFunc() {
 }
 
 // When any answer is clicked function checkAnswerFunc begins.
-$("#answerContainer").on("click", "button", function () {
-  checkAnswerFunc();
+$("#answerContainer").on("click", "button", function (event) {
+  checkAnswerFunc(event);
 });
