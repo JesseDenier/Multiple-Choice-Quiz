@@ -23,12 +23,16 @@ $("#displayScores").on("click", displayScoresFunc);
 // Adds your initials, score, and the date/time to local storage. Then calls the display Scores Function.
 function submitFunc() {
   var userPoints = {
-    user: initials.value,
+    user: $("#initials").val(),
     points: points,
     date: new Date().toLocaleString(),
   };
   localStorage.setItem("userPoints", JSON.stringify(userPoints));
   displayScoresFunc();
+
+  console.log(userPoints);
+  var userPointsItem = $("<li>").text(userPoints);
+  $("#highScoresList").append(userPointsItem);
 }
 
 // Hides questions and answers. Creates and appends a final score message, initials input, and submit button. Starts the submition function on click of created button.
