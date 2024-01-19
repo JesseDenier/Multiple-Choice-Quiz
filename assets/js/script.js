@@ -1,3 +1,8 @@
+// Instantly hides the quiz, quizEnd, and scores containers so they can be shown later.
+$("#quiz").hide();
+$("#quizEnd").hide();
+$("#highScores").hide();
+
 // States the timer isn't active so future function can turn it on, and sets standard time.
 var isTimerActive = false;
 
@@ -11,10 +16,12 @@ $("#returnBtn").on("click", returnFunc);
 
 // Hides all other HTML elements and displays scores.
 function displayScoresFunc() {
-  $("#main").hide();
+  $("#quizEnd").hide();
+  $("#quiz").hide();
+  $("#quizStart").hide();
   $("header").hide();
   $("footer").hide();
-  $("#scores").css("display", "flex");
+  $("#highScores").show();
 }
 
 // When View High Scores is clicked function displayScoresFunc begins.
@@ -37,21 +44,10 @@ function submitFunc() {
 
 // Hides questions and answers. Creates and appends a final score message, initials input, and submit button. Starts the submition function on click of created button.
 function quizEndFunc() {
-  $("#questionContainer").hide();
-  $("#answerContainer").hide();
-  var scoreMessageEl = $("<h3>").text(
-    "Game Over: Your score is " + points + "!"
-  );
-  var initialsMessageEl = $("<h3>").text("Enter Initials: ");
-  var initialsInputEl = $("<input>").attr("id", "initials");
-  var submitBtnEl = $("<button>").text("Submit");
-  $("#main").append(
-    scoreMessageEl,
-    initialsMessageEl,
-    initialsInputEl,
-    submitBtnEl
-  );
-  submitBtnEl.on("click", submitFunc);
+  $("#quiz").hide();
+  $("#quizEnd").show();
+
+  $("#submitBtn").on("click", submitFunc);
 }
 
 // Brings up the next question and answers, and assigns correct/incorrect values to the answers. When out of questions triggers the quiz end function.
@@ -100,9 +96,9 @@ function startQuizFunc() {
   points = 0;
   questionNum = 0;
   seconds = 60;
-  $("#score").text(points);
-  $("#startQuizContainer").hide();
-  $("#answerContainer").show();
+  $(".scoreNum").text(points);
+  $("#quizStart").hide();
+  $("#quiz").show();
   nextQuestionFunc();
   startTimerFunc();
 }
@@ -149,7 +145,7 @@ function fadeOutWrong() {
 function checkAnswerFunc(event) {
   if ($(event.target).data("correct")) {
     points++;
-    $("#score").text(points);
+    $(".scoreNum").text(points);
     fadeOutCorrect();
   } else {
     seconds -= 5;

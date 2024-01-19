@@ -14,33 +14,38 @@
   </head>
   <body>
     <header>
-      <h2 class="score">Score:<span id="score">0</span></h2>
+      <h2 class="score">Score:<span class="scoreNum">0</span></h2>
       <h2 class="timeLeft">Time:<span id="timeLeft">60</span></h2>
     </header>
-    <main id="main">
-      <div>
-        <div id="startQuizContainer">
-          <h1>Coding Quiz</h1>
-          <p>
-            Every correct answer is worth 1 point.<br />Every incorrect answer
-            removes 5 seconds from the timer.<br />See how high you can get!
-          </p>
-          <button id="startQuizBtn">Start Quiz</button>
-        </div>
-        <div id="questionContainer"></div>
-        <div id="answerContainer">
-          <button class="answer" id="answerContainerA"></button>
-          <button class="answer" id="answerContainerB"></button>
-          <button class="answer" id="answerContainerC"></button>
-          <button class="answer" id="answerContainerD"></button>
-        </div>
+    <article class="fullScreenContainer" id="quizStart">
+      <h1>Coding Quiz</h1>
+      <p>
+        Every correct answer is worth 1 point.<br />Every incorrect answer
+        removes 5 seconds from the timer.<br />See how high you can get!
+      </p>
+      <button id="startQuizBtn">Start Quiz</button>
+    </article>
+    <article class="fullScreenContainer" id="quiz">
+      <div id="questionContainer"></div>
+      <div id="answerContainer">
+        <button class="answer" id="answerContainerA"></button>
+        <button class="answer" id="answerContainerB"></button>
+        <button class="answer" id="answerContainerC"></button>
+        <button class="answer" id="answerContainerD"></button>
       </div>
-    </main>
-    <section id="scores">
+    </article>
+    <article class="fullScreenContainer" id="quizEnd">
+      <h3>Game over: Your score is <span class="scoreNum">0</span>!</h3>
+      <h3>Enter Name:</h3>
+      <input id="name" />
+      <button id="submitBtn">Submit</button>
+    </article>
+    <article class="fullScreenContainer" id="highScores">
       <h1>High Scores</h1>
-      <ul id="highScoreslist"></ul>
+      <ul id="highScoresList"></ul>
+      <li>Delete Me</li>
       <button id="returnBtn">Return</button>
-    </section>
+    </article>
     <footer>
       <h2 id="displayScores">View High Scores</h2>
     </footer>
