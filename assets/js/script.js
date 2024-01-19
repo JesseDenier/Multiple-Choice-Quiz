@@ -3,7 +3,7 @@ function getElementById(id) {
   return document.querySelector("#" + id);
 }
 
-// States the timer isn't active so future function can turn it on.
+// States the timer isn't active so future function can turn it on, and sets standard time.
 var isTimerActive = false;
 
 // Defines score so future functions can affect it.
@@ -18,7 +18,7 @@ function addScore() {}
 
 // Adds your initials, score, and the date/time to local storage.
 // TODO: Make it take you to high scores
-function submit() {
+function submitFunc() {
   var userPoints = {
     user: initials.value,
     points: points,
@@ -26,102 +26,6 @@ function submit() {
   };
   localStorage.setItem("userPoints", JSON.stringify(userPoints));
   addScore();
-}
-
-// Removes question from questionContainer, displays final score, and calls the submit function.
-function quizEnd() {
-  questionContainer.style.display = "none";
-  answerContainer.style.display = "none";
-  // Create elements.
-  var scoreMessage = document.createElement("h3");
-  scoreMessage.textContent = "Game Over: Your score is " + points + "!";
-  var initialsMessage = document.createElement("h3");
-  initialsMessage.textContent = "Enter Initials: ";
-  var submitBtn = document.createElement("button");
-  submitBtn.textContent = "Submit";
-  // Attach elements.
-  main.appendChild(scoreMessage);
-  main.appendChild(initialsMessage);
-  main.appendChild(initials);
-  main.appendChild(submitBtn);
-
-  // Submits score when submitBtn is clicked.
-  submitBtn.addEventListener("click", submit);
-}
-
-var seconds = 60;
-
-// Removes 1 second from seconds every second, and displays that number in the timeLeft element in HTML. If timer is active, resets the timer.
-function timer() {
-  if (isTimerActive === true) {
-    clearInterval(timerInterval);
-  }
-  seconds = 60;
-  timerInterval = setInterval(function () {
-    seconds--;
-    timeLeft.textContent = seconds;
-    // When seconds hits 0 it runs a new the endQuiz function and stops the timer function.
-    if (seconds <= 0) {
-      clearInterval(timerInterval);
-      isTimerActive = false;
-      quizEnd();
-    }
-  }, 1000);
-  isTimerActive = true;
-}
-
-var i = 0;
-
-// Populates questionContainer with a new question and answers until out of questions.
-function newQuestion() {
-  if (i < questions.length) {
-    questionContainer.textContent = questions[i].question;
-
-    answerContainerA.textContent = questions[i].answers[0].text;
-    answerContainerB.textContent = questions[i].answers[1].text;
-    answerContainerC.textContent = questions[i].answers[2].text;
-    answerContainerD.textContent = questions[i].answers[3].text;
-    // Attaches the correct boolean value to each answerContainer.
-    answerContainerA.dataset.correct = questions[i].answers[0].correct;
-    answerContainerB.dataset.correct = questions[i].answers[1].correct;
-    answerContainerC.dataset.correct = questions[i].answers[2].correct;
-    answerContainerD.dataset.correct = questions[i].answers[3].correct;
-
-    i++;
-  } else {
-    quizEnd();
-    clearInterval(timerInterval);
-    isTimerActive = false;
-  }
-}
-
-// Resets and begins the quiz.
-function firstQuestion() {
-  i = 0;
-  points = 0;
-  score.textContent = points;
-  startQuizContainer.style.display = "none";
-  answerContainer.style.display = "flex";
-  newQuestion();
-}
-
-// Checks if answer is correct, and either adds +1 to score or -5 to timer.
-function checkAnswer() {
-  var selectedAnswer = event.target;
-  if (selectedAnswer.dataset.correct === "true") {
-    points++;
-    score.textContent = points;
-    setTimeout(function () {
-      fadeOutCorrect();
-    }, 0);
-  } else {
-    seconds -= 5;
-    timeLeft.textContent = seconds;
-    setTimeout(function () {
-      fadeOutWrong();
-    }, 0);
-  }
-  newQuestion();
 }
 
 // The fadeOut functions were initially created by ChatGPT and adapted by Jesse Denier.
@@ -194,15 +98,93 @@ function fadeOutWrong(element) {
   }, interval);
 }
 
-// checks the answer and displays a new question when an answer is clicked.
-answerContainer.addEventListener("click", function (event) {
-  if (event.target.tagName === "BUTTON") {
-    checkAnswer();
+// Checks if answer is correct, and either adds +1 to score or -5 to timer. Then restarts the NextQuestionFunc function.
+function checkAnswerFunc() {
+  if ($(event.target).data("correct")) {
+    points++;
+    score.textContent = points;
+    setTimeout(function () {
+      fadeOutCorrect();
+    }, 0);
+  } else {
+    seconds -= 5;
+    timeLeft.textContent = seconds;
+    setTimeout(function () {
+      fadeOutWrong();
+    }, 0);
   }
+  nextQuestionFunc();
+}
+
+// When any answer is clicked function checkAnswerFunc begins.
+$("#answerContainer").on("click", "button", function () {
+  checkAnswerFunc();
 });
 
-// Begins the timer when the startQuiz button is clicked.
-startQuiz.addEventListener("click", timer);
+// Hides questions and answers. Creates and appends a final score message, initials input, and submit button. Starts the sumbition function on click of created button.
+function quizEndFunc() {
+  $("#questionContainer").hide();
+  $("#answerContainer").hide();
+  var scoreMessage = $("<h3>").text("Game Over: Your score is " + points + "!");
+  var initialsMessage = $("<h3>").text("Enter Initials: ");
+  var initialsInput = $("<input>").attr("id", "initials");
+  var submitBtn = $("<button>").text("Submit");
+  $("#main").append(scoreMessage, initialsMessage, initialsInput, submitBtn);
+  submitBtn.on("click", submitFunc);
+}
 
-// Displays a new question when the startQuiz button is clicked.
-startQuiz.addEventListener("click", firstQuestion);
+// Brings up the next question and answers, and assigns correct/incorrect values to the answers. When out of questions triggers the quiz end function.
+function nextQuestionFunc() {
+  if (questionNum < questions.length) {
+    $("#questionContainer").text(questions[questionNum].question);
+    $("#answerContainerA")
+      .text(questions[questionNum].answers[0].text)
+      .attr("data-correct", questions[questionNum].answers[0].correct);
+    $("#answerContainerB")
+      .text(questions[questionNum].answers[1].text)
+      .attr("data-correct", questions[questionNum].answers[1].correct);
+    $("#answerContainerC")
+      .text(questions[questionNum].answers[2].text)
+      .attr("data-correct", questions[questionNum].answers[2].correct);
+    $("#answerContainerD")
+      .text(questions[questionNum].answers[3].text)
+      .attr("data-correct", questions[questionNum].answers[3].correct);
+    questionNum++;
+  } else {
+    quizEndFunc();
+    clearInterval(timerInterval);
+    isTimerActive = false;
+  }
+}
+
+// If timer is on, resets timer. Counts down from 60, displaying it in timeLeft. Triggers the quiz end function if timer runs out.
+function startTimerFunc() {
+  if (isTimerActive) {
+    clearInterval(timerInterval);
+  }
+  timerInterval = setInterval(function () {
+    seconds--;
+    $("#timeLeft").text(seconds);
+    if (seconds <= 0) {
+      clearInterval(timerInterval);
+      isTimerActive = false;
+      quizEndFunc();
+    }
+  }, 1000);
+  isTimerActive = true;
+}
+
+// Resets the points, timer, and questions. Hides the preQuiz elements and shows the questions/answers. Finally triggers the timer and question functions.
+function startQuizFunc() {
+  points = 0;
+  questionNum = 0;
+  seconds = 60;
+  $("#score").text(points);
+  $("#startQuizContainer").hide();
+  $("#answerContainer").show();
+  nextQuestionFunc();
+  startTimerFunc();
+}
+
+// When startQuizBtn is clicked function startQuizFunc begins.
+$("#startQuizBtn").on("click", startQuizFunc);
