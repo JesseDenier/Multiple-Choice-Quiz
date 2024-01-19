@@ -6,6 +6,14 @@ $("#highScores").hide();
 // States the timer isn't active so future function can turn it on, and sets standard time.
 var isTimerActive = false;
 
+// Chat GPT created function which will shuffle the selected array when called upon.
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 //Reloads the page.
 function returnFunc() {
   location.reload();
@@ -14,7 +22,7 @@ function returnFunc() {
 // When returnBtn is clicked function reloadFunc begins.
 $("#returnBtn").on("click", returnFunc);
 
-// Hides all other HTML elements and displays scores.
+// Hides all other HTML elements and displays scores. Also builds out list from local storage.
 function displayScoresFunc() {
   $("#quizEnd").hide();
   $("#quiz").hide();
@@ -22,29 +30,48 @@ function displayScoresFunc() {
   $("header").hide();
   $("footer").hide();
   $("#highScores").show();
+
+  var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  $("#highScoresList").empty();
+  for (var i = 0; i < highScores.length; i++) {
+    var userData = $("<li>").text(
+      highScores[i].points +
+        " by " +
+        highScores[i].user +
+        " on " +
+        highScores[i].date
+    );
+    $("#highScoresList").append(userData);
+  }
 }
 
 // When View High Scores is clicked function displayScoresFunc begins.
 $("#displayScores").on("click", displayScoresFunc);
 
-// Adds your score, name, and date to the High Scores list. Then calls the display Scores Function.
+// Adds your score, name, and date to local storage. Then calls the display Scores Function.
 function submitFunc(event) {
   event.preventDefault();
-
   var userName = $("input[id='userName']").val();
-
   var date = new Date().toLocaleString();
-
   if (!userName) {
     return;
   }
-
-  var userData = $("<li>");
-
-  userData.text(points + " by " + userName + " on " + date);
-
-  $("#highScoresList").append(userData);
-
+  var userData = {
+    user: userName,
+    points: points,
+    date: date,
+  };
+  // Get existing high scores from local storage or initialize an empty array
+  var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  // Add the current user's points to the high scores array
+  highScores.push(userData);
+  // Sort the high scores based on points in descending order
+  highScores.sort(function (a, b) {
+    return b.points - a.points;
+  });
+  // Save the updated high scores array back to local storage
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+  // Clear the input field
   $("input[id='userName']").val("");
 
   displayScoresFunc();
@@ -98,7 +125,7 @@ function startTimerFunc() {
   isTimerActive = true;
 }
 
-// Resets the points, timer, and questions. Hides the preQuiz elements and shows the questions/answers. Finally triggers the timer and question functions.
+// Resets the points, timer, and questions. Hides the preQuiz elements and shows the questions/answers. Finally triggers the timer, shuffle, and question functions.
 function startQuizFunc() {
   points = 0;
   questionNum = 0;
@@ -106,6 +133,7 @@ function startQuizFunc() {
   $(".scoreNum").text(points);
   $("#quizStart").hide();
   $("#quiz").show();
+  shuffleArray(questions);
   nextQuestionFunc();
   startTimerFunc();
 }
@@ -116,7 +144,6 @@ $("#startQuizBtn").on("click", startQuizFunc);
 // The fadeOut functions were initially created by ChatGPT and adapted by Jesse Denier.
 // They create fixed HTML elements, drop the opacity, and delete them over .5 seconds to give animated feedback.
 function fadeOutCorrect() {
-  // Create and append new h2 elements to the document
   var correctMessageEl = $("<h2>", {
     text: "Correct",
     id: "correctMessage",
@@ -166,18 +193,3 @@ function checkAnswerFunc(event) {
 $("#answerContainer").on("click", "button", function (event) {
   checkAnswerFunc(event);
 });
-
-// Old function used to add data to local storage.
-/*
-  var userPoints = {
-    user: $("#initials").val(),
-    points: points,
-    date: new Date().toLocaleString(),
-  };
-  localStorage.setItem("userPoints", JSON.stringify(userPoints));
-  displayScoresFunc();
-
-  console.log(userPoints);
-  var userPointsItem = $("<li>").text(userPoints);
-  $("#highScoresList").append(userPointsItem);
-*/
