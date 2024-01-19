@@ -29,6 +29,12 @@ button:hover {
   background-color: rgb(245, 243, 235);
 }
 
+ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -88,8 +94,8 @@ footer {
 /* Below is CSS for javascript created fadeOut messages. */
 .checkMessage {
   position: fixed;
-  bottom: 0;
-  margin-bottom: 125px;
+  top: 0;
+  margin-top: 15px;
   left: 50%;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   transform: translateX(-50%);
@@ -97,11 +103,9 @@ footer {
 }
 #correctMessage {
   color: green;
-  transform: translateX(-50%) rotate(-20deg);
 }
 #wrongMessage {
   color: red;
-  transform: translateX(-50%) rotate(20deg);
 }
 #minusFive {
   color: red;
