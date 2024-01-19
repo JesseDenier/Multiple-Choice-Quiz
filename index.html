@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" a href="style.css" />
+    <link rel="stylesheet" a href="assets/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,34 +14,48 @@
   </head>
   <body>
     <header>
-      <h2 class="score">Score:<span id="score">0</span></h2>
+      <h2 class="score">Score:<span class="scoreNum">0</span></h2>
       <h2 class="timeLeft">Time:<span id="timeLeft">60</span></h2>
     </header>
-    <main id="main">
-      <div>
-        <div id="startQuizContainer">
-          <h1>Coding Quiz</h1>
-          <p>
-            Every correct answer is worth 1 point.<br />Every incorrect answer
-            removes 5 seconds from the timer.<br />See how high you can get!
-          </p>
-          <button id="startQuiz">Start Quiz</button>
-        </div>
-        <!-- Questions are added here through Javascript.-->
-        <div id="questionContainer"></div>
-        <!-- Answers are added here through Javascipt.-->
-        <div id="answerContainer">
-          <button class="answer" id="answerContainerA"></button>
-          <button class="answer" id="answerContainerB"></button>
-          <button class="answer" id="answerContainerC"></button>
-          <button class="answer" id="answerContainerD"></button>
-        </div>
+    <article class="fullScreenContainer" id="quizStart">
+      <h1>Coding Quiz</h1>
+      <p>
+        Every correct answer is worth 1 point.<br />Every incorrect answer
+        removes 5 seconds from the timer.<br />See how high you can get!
+      </p>
+      <button id="startQuizBtn">Start Quiz</button>
+    </article>
+    <article class="fullScreenContainer" id="quiz">
+      <div id="questionContainer"></div>
+      <div id="answerContainer">
+        <button class="answer" id="answerContainerA"></button>
+        <button class="answer" id="answerContainerB"></button>
+        <button class="answer" id="answerContainerC"></button>
+        <button class="answer" id="answerContainerD"></button>
       </div>
-    </main>
+    </article>
+    <article class="fullScreenContainer" id="quizEnd">
+      <form>
+        <h3>Game over: Your score is <span class="scoreNum">0</span>!</h3>
+        <h3>Enter Name:</h3>
+        <input id="userName" />
+        <button id="submitBtn">Submit</button>
+      </form>
+    </article>
+    <article class="fullScreenContainer" id="highScores">
+      <h1>High Scores</h1>
+      <ul id="highScoresList"></ul>
+      <button id="returnBtn">Return</button>
+    </article>
     <footer>
-      <a href="scores.html"><h2>View High Scores</h2></a>
+      <h2 id="displayScores">View High Scores</h2>
     </footer>
-    <script src="questions.js"></script>
-    <script src="script.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/questions.js"></script>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
