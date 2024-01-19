@@ -1,14 +1,26 @@
 // States the timer isn't active so future function can turn it on, and sets standard time.
 var isTimerActive = false;
 
-// Defines initials before quizEnd or submit functions so it's dynamic for both.
-var initials = document.createElement("input");
+//Reloads the page.
+function returnFunc() {
+  location.reload();
+}
 
-// Takes the initials, score, and date/time from local storage and adds it to high scores list.
-function addScore() {}
+// When returnBtn is clicked function reloadFunc begins.
+$("#returnBtn").on("click", returnFunc);
 
-// Adds your initials, score, and the date/time to local storage.
-// TODO: Make it take you to high scores
+// Hides all other HTML elements and displays scores.
+function displayScoresFunc() {
+  $("#main").hide();
+  $("header").hide();
+  $("footer").hide();
+  $("#scores").css("display", "flex");
+}
+
+// When View High Scores is clicked function displayScoresFunc begins.
+$("#displayScores").on("click", displayScoresFunc);
+
+// Adds your initials, score, and the date/time to local storage. Then calls the display Scores Function.
 function submitFunc() {
   var userPoints = {
     user: initials.value,
@@ -16,7 +28,7 @@ function submitFunc() {
     date: new Date().toLocaleString(),
   };
   localStorage.setItem("userPoints", JSON.stringify(userPoints));
-  addScore();
+  displayScoresFunc();
 }
 
 // Hides questions and answers. Creates and appends a final score message, initials input, and submit button. Starts the submition function on click of created button.

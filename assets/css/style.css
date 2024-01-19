@@ -117,6 +117,12 @@ button:hover {
   transform: rotate(5deg);
 }
 
-/* Below is CSS for javascript created quizEnd messages. */
-#initialsMessage {
+/* Below is CSS for scores. */
+#scores {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin-top: 50px;
 }
