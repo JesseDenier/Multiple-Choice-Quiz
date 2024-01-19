@@ -27,26 +27,33 @@ function displayScoresFunc() {
 // When View High Scores is clicked function displayScoresFunc begins.
 $("#displayScores").on("click", displayScoresFunc);
 
-// Adds your initials, score, and the date/time to local storage. Then calls the display Scores Function.
-function submitFunc() {
-  var userPoints = {
-    user: $("#initials").val(),
-    points: points,
-    date: new Date().toLocaleString(),
-  };
-  localStorage.setItem("userPoints", JSON.stringify(userPoints));
-  displayScoresFunc();
+// Adds your score, name, and date to the High Scores list. Then calls the display Scores Function.
+function submitFunc(event) {
+  event.preventDefault();
 
-  console.log(userPoints);
-  var userPointsItem = $("<li>").text(userPoints);
-  $("#highScoresList").append(userPointsItem);
+  var userName = $("input[id='userName']").val();
+
+  var date = new Date().toLocaleString();
+
+  if (!userName) {
+    return;
+  }
+
+  var userData = $("<li>");
+
+  userData.text(points + " by " + userName + " on " + date);
+
+  $("#highScoresList").append(userData);
+
+  $("input[id='userName']").val("");
+
+  displayScoresFunc();
 }
 
-// Hides questions and answers. Creates and appends a final score message, initials input, and submit button. Starts the submition function on click of created button.
+// Hides questions and answers. Reveals the quizEnd container. Starts the submition function on click of created button.
 function quizEndFunc() {
   $("#quiz").hide();
   $("#quizEnd").show();
-
   $("#submitBtn").on("click", submitFunc);
 }
 
@@ -159,3 +166,18 @@ function checkAnswerFunc(event) {
 $("#answerContainer").on("click", "button", function (event) {
   checkAnswerFunc(event);
 });
+
+// Old function used to add data to local storage.
+/*
+  var userPoints = {
+    user: $("#initials").val(),
+    points: points,
+    date: new Date().toLocaleString(),
+  };
+  localStorage.setItem("userPoints", JSON.stringify(userPoints));
+  displayScoresFunc();
+
+  console.log(userPoints);
+  var userPointsItem = $("<li>").text(userPoints);
+  $("#highScoresList").append(userPointsItem);
+*/
