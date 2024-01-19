@@ -13,7 +13,7 @@ body {
 }
 
 h2 {
-  font-size: calc(1vw + 18px);
+  font-size: calc(1.25vw + 16px);
 }
 
 button {
@@ -60,6 +60,12 @@ footer {
   align-items: center;
   width: 100vw;
   height: 100vh;
+}
+
+#quizStart p {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: calc(1vw + 11.5px);
 }
 
 #questionContainer {
