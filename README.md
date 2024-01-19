@@ -22,7 +22,7 @@ This webpage can be opened and interacted with using the "Start Quiz" button and
 
 ## Credits
 
-All credit goes to myself, Jesse Denier. Some javascript functions were created with the help of ChatGPT and those function have been notated within the code itself.
+All credit goes to myself, Jesse Denier. Some javascript functions were created with the help of ChatGPT and those function have been notated within the code itself. Additionally the questions were created by ChatGPT.
 
 ## License
 
