@@ -56,7 +56,7 @@ $("#displayScores").on("click", displayScores);
 function submit(event) {
   event.preventDefault();
   var userName = $("input[id='userName']").val();
-  var date = new Date().toLocaleString();
+  var date = new Date().toLocaleDateString();
   if (!userName) {
     return;
   }
@@ -73,6 +73,8 @@ function submit(event) {
   highScores.sort(function (a, b) {
     return b.points - a.points;
   });
+  // Keep only the top 10 scores.
+  highScores.splice(10);
   // Saves the updated high scores array back to local storage.
   localStorage.setItem("highScores", JSON.stringify(highScores));
   // Clears the input field.
