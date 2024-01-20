@@ -107,10 +107,22 @@ function nextQuestion() {
       .text(currentQuestion.answers[3].text)
       .attr("data-correct", currentQuestion.answers[3].correct);
     questionNum++;
+    checkTimer();
   } else {
     quizEnd();
     clearInterval(timerInterval);
     isTimerActive = false;
+  }
+}
+
+// If timer reaches 0 triggers the function quizEnd.
+function checkTimer() {
+  if (seconds <= 0) {
+    seconds = 0;
+    $("#timeLeft").text(seconds);
+    clearInterval(timerInterval);
+    isTimerActive = false;
+    quizEnd();
   }
 }
 
@@ -122,13 +134,7 @@ function startTimer() {
   timerInterval = setInterval(function () {
     seconds--;
     $("#timeLeft").text(seconds);
-    if (seconds <= 0) {
-      seconds = 0;
-      $("#timeLeft").text(seconds);
-      clearInterval(timerInterval);
-      isTimerActive = false;
-      quizEnd();
-    }
+    checkTimer();
   }, 1000);
   isTimerActive = true;
 }
