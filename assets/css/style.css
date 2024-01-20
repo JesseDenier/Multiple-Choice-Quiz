@@ -91,6 +91,22 @@ footer {
   min-width: 250px;
 }
 
+form {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.formLine2 {
+  display: inline;
+  margin-bottom: 10px;
+}
+
+form button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Below is CSS for javascript created fadeOut messages. */
 .checkMessage {
   position: fixed;

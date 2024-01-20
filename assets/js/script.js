@@ -92,24 +92,37 @@ function quizEnd() {
 // Brings up a new question with answer choices. When out of questions triggers the function quizEnd.
 function nextQuestion() {
   if (questionNum < questions.length) {
-    $("#questionContainer").text(questions[questionNum].question);
-    $("#answerContainerA")
-      .text(questions[questionNum].answers[0].text)
-      .attr("data-correct", questions[questionNum].answers[0].correct);
-    $("#answerContainerB")
-      .text(questions[questionNum].answers[1].text)
-      .attr("data-correct", questions[questionNum].answers[1].correct);
-    $("#answerContainerC")
-      .text(questions[questionNum].answers[2].text)
-      .attr("data-correct", questions[questionNum].answers[2].correct);
-    $("#answerContainerD")
-      .text(questions[questionNum].answers[3].text)
-      .attr("data-correct", questions[questionNum].answers[3].correct);
+    var currentQuestion = questions[questionNum];
+    $("#questionContainer").text(currentQuestion.question);
+    $("#answerA")
+      .text(currentQuestion.answers[0].text)
+      .attr("data-correct", currentQuestion.answers[0].correct);
+    $("#answerB")
+      .text(currentQuestion.answers[1].text)
+      .attr("data-correct", currentQuestion.answers[1].correct);
+    $("#answerC")
+      .text(currentQuestion.answers[2].text)
+      .attr("data-correct", currentQuestion.answers[2].correct);
+    $("#answerD")
+      .text(currentQuestion.answers[3].text)
+      .attr("data-correct", currentQuestion.answers[3].correct);
     questionNum++;
+    checkTimer();
   } else {
     quizEnd();
     clearInterval(timerInterval);
     isTimerActive = false;
+  }
+}
+
+// If timer reaches 0 triggers the function quizEnd.
+function checkTimer() {
+  if (seconds <= 0) {
+    seconds = 0;
+    $("#timeLeft").text(seconds);
+    clearInterval(timerInterval);
+    isTimerActive = false;
+    quizEnd();
   }
 }
 
@@ -121,13 +134,7 @@ function startTimer() {
   timerInterval = setInterval(function () {
     seconds--;
     $("#timeLeft").text(seconds);
-    if (seconds <= 0) {
-      seconds = 0;
-      $("#timeLeft").text(seconds);
-      clearInterval(timerInterval);
-      isTimerActive = false;
-      quizEnd();
-    }
+    checkTimer();
   }, 1000);
   isTimerActive = true;
 }
@@ -189,7 +196,7 @@ function fadeOutWrong() {
 
 // If correct adds 1 to score, and triggers function fadeOutCorrect. If incorrect removes 5 from timer, and triggers function fadeOutWrong. Triggers the function nextQuestion.
 function checkAnswer(event) {
-  if ($(event.target).data("correct")) {
+  if ($(event.target).attr("data-correct") === "true") {
     points++;
     $(".scoreNum").text(points);
     fadeOutCorrect();

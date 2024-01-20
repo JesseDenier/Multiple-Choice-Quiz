@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <title>Coding Quiz</title>
+    <title>Javascript Quiz</title>
   </head>
   <body>
     <header>
@@ -18,7 +18,7 @@
       <h2 class="timeLeft">Time:<span id="timeLeft">60</span></h2>
     </header>
     <article class="fullScreenContainer" id="quizStart">
-      <h1>Coding Quiz</h1>
+      <h1>Javascript Quiz</h1>
       <p>
         Every correct answer is worth 1 point.<br />Every incorrect answer
         removes 5 seconds from the timer.<br />See how high you can get!
@@ -28,17 +28,17 @@
     <article class="fullScreenContainer" id="quiz">
       <div id="questionContainer"></div>
       <div id="answerContainer">
-        <button class="answer" id="answerContainerA"></button>
-        <button class="answer" id="answerContainerB"></button>
-        <button class="answer" id="answerContainerC"></button>
-        <button class="answer" id="answerContainerD"></button>
+        <button class="answer" id="answerA"></button>
+        <button class="answer" id="answerB"></button>
+        <button class="answer" id="answerC"></button>
+        <button class="answer" id="answerD"></button>
       </div>
     </article>
     <article class="fullScreenContainer" id="quizEnd">
       <form>
-        <h3>Game over: Your score is <span class="scoreNum">0</span>!</h3>
-        <h3>Enter Name:</h3>
-        <input autocomplete="name" id="userName" />
+        <h1>Game over: Your score is <span class="scoreNum">0</span>!</h1>
+        <h3 class="formLine2">Enter Name:</h3>
+        <input class="formLine2" autocomplete="name" id="userName" />
         <button id="submitBtn">Submit</button>
       </form>
     </article>
