@@ -117,6 +117,8 @@ function startTimerFunc() {
     seconds--;
     $("#timeLeft").text(seconds);
     if (seconds <= 0) {
+      seconds = 0;
+      $("#timeLeft").text(seconds);
       clearInterval(timerInterval);
       isTimerActive = false;
       quizEndFunc();
