@@ -190,7 +190,7 @@ function fadeOutWrong() {
 
 // If correct adds 1 to score, and triggers function fadeOutCorrect. If incorrect removes 5 from timer, and triggers function fadeOutWrong. Triggers the function nextQuestion.
 function checkAnswer(event) {
-  if ($(event.target).data("correct")) {
+  if ($(event.target).attr("data-correct") === "true") {
     points++;
     $(".scoreNum").text(points);
     fadeOutCorrect();
