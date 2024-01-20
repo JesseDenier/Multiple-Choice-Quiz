@@ -1,6 +1,6 @@
 # Multiple-Choice-Quiz
 
-A times multiple-choice quiz covering HTML, CSS, and Javascript basics
+A multiple-choice quiz covering Javascript principles.
 
 ## Description
 
@@ -22,7 +22,7 @@ This webpage can be opened and interacted with using the "Start Quiz" button and
 
 ## Credits
 
-All credit goes to myself, Jesse Denier. Some javascript functions were created with the help of ChatGPT and those function have been notated within the code itself. Additionally the questions were created by ChatGPT.
+All credit goes to myself, Jesse Denier. Some javascript functions were created with the help of ChatGPT and those function have been notated within the code itself. Additionally the questions were created by ChatGPT. Greg Becker caught a bug associated with data() caching which I resolved.
 
 ## License
 
