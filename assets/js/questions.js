@@ -1,141 +1,4 @@
-// An array of questions and answers which can be dynamically drawn from.
 var questions = [
-  {
-    question: "What does HTML stand for?",
-    answers: [
-      { text: "Hypertext Markup Language", correct: true },
-      { text: "Hyperlink and Text Markup Language", correct: false },
-      { text: "Home Tool Markup Language", correct: false },
-      { text: "Hyper Transfer Markup Language", correct: false },
-    ],
-  },
-  {
-    question: "What does CSS stand for?",
-    answers: [
-      { text: "Computer Style Sheet", correct: false },
-      { text: "Cascading Style Sheet", correct: true },
-      { text: "Colorful Style Sheet", correct: false },
-      { text: "Creative Style Sheet", correct: false },
-    ],
-  },
-  {
-    question: "What does HTML do?",
-    answers: [
-      { text: "Styles the content of a web page", correct: false },
-      { text: "Handles user interactions on a web page", correct: false },
-      { text: "Defines the structure of a web page", correct: true },
-      { text: "Manages server-side operations", correct: false },
-    ],
-  },
-  {
-    question: "What does CSS do?",
-    answers: [
-      { text: "Defines the behavior of a web page", correct: false },
-      { text: "Manages server-side scripting", correct: false },
-      { text: "Handles database operations", correct: false },
-      { text: "Styles the presentation of a web page", correct: true },
-    ],
-  },
-  {
-    question: "What does JavaScript do?",
-    answers: [
-      { text: "Adds interactivity to a web page", correct: true },
-      { text: "Defines the layout of a web page", correct: false },
-      { text: "Manages server-side logic", correct: false },
-      { text: "Handles document structure", correct: false },
-    ],
-  },
-  {
-    question: "What does XML stand for?",
-    answers: [
-      { text: "Extra Modern Language", correct: false },
-      { text: "Extensible Markup Language", correct: true },
-      { text: "Expressive Markup Language", correct: false },
-      { text: "External Markup Language", correct: false },
-    ],
-  },
-  {
-    question: "What is the purpose of the <head> element in HTML?",
-    answers: [
-      { text: "Defines the main content of a page", correct: false },
-      { text: "Specifies a header for a document", correct: false },
-      { text: "Contains metadata about the document", correct: true },
-      { text: "Represents a navigation menu", correct: false },
-    ],
-  },
-  {
-    question: "Which HTML tag is used to create an unordered list?",
-    answers: [
-      { text: "<ol>", correct: false },
-      { text: "<li>", correct: false },
-      { text: "<dl>", correct: false },
-      { text: "<ul>", correct: true },
-    ],
-  },
-  {
-    question: "What does the HTML attribute 'alt' stand for in the <img> tag?",
-    answers: [
-      { text: "Alternative", correct: true },
-      { text: "Altitude", correct: false },
-      { text: "Alignment", correct: false },
-      { text: "Attribute", correct: false },
-    ],
-  },
-  {
-    question: "In HTML, what is the purpose of the <footer> element?",
-    answers: [
-      { text: "Represents a section of content", correct: false },
-      { text: "Specifies a footer for a document", correct: true },
-      { text: "Defines the main content of a page", correct: false },
-      { text: "Represents a sidebar in a document", correct: false },
-    ],
-  },
-  {
-    question: "What is the purpose of the CSS property 'margin'?",
-    answers: [
-      { text: "Defines the background color of an element", correct: false },
-      { text: "Specifies the font size of text", correct: false },
-      { text: "Sets the space between elements' borders", correct: true },
-      { text: "Manages the visibility of an element", correct: false },
-    ],
-  },
-  {
-    question: "How can you select all paragraphs in CSS?",
-    answers: [
-      { text: "p:all", correct: false },
-      { text: "paragraph:all", correct: false },
-      { text: "p *", correct: false },
-      { text: "p", correct: true },
-    ],
-  },
-  {
-    question: "What does the CSS property 'float' do?",
-    answers: [
-      { text: "Moves an element to the right or left", correct: true },
-      { text: "Changes the opacity of an element", correct: false },
-      { text: "Increases the font weight of text", correct: false },
-      { text: "Adds a shadow to an element", correct: false },
-    ],
-  },
-  {
-    question:
-      "Which CSS pseudo-class is used to select an element when it is being hovered over?",
-    answers: [
-      { text: ":active", correct: false },
-      { text: ":hover", correct: true },
-      { text: ":focus", correct: false },
-      { text: ":visited", correct: false },
-    ],
-  },
-  {
-    question: "How can you center an element horizontally in CSS?",
-    answers: [
-      { text: "text-align: center;", correct: false },
-      { text: "align: center;", correct: false },
-      { text: "margin: auto;", correct: true },
-      { text: "position: center;", correct: false },
-    ],
-  },
   {
     question: "What is the purpose of the 'let' keyword in JavaScript?",
     answers: [
@@ -228,25 +91,16 @@ var questions = [
     ],
   },
   {
-    question: "Which HTML tag is used to create a hyperlink?",
+    question: "What does the JavaScript keyword 'const' do?",
     answers: [
-      { text: "<link>", correct: false },
-      { text: "<a>", correct: true },
-      { text: "<hlink>", correct: false },
-      { text: "<url>", correct: false },
+      { text: "Declares a constant variable", correct: true },
+      { text: "Declares a block-scoped variable", correct: false },
+      { text: "Declares a global variable", correct: false },
+      { text: "Declares a function", correct: false },
     ],
   },
   {
-    question: "What does the CSS property 'box-sizing' control?",
-    answers: [
-      { text: "Element's position", correct: false },
-      { text: "Element's color", correct: false },
-      { text: "Element's width and height", correct: true },
-      { text: "Element's font size", correct: false },
-    ],
-  },
-  {
-    question: "What is the purpose of the 'map' function in JavaScript?",
+    question: "What is the purpose of the JavaScript 'map' function?",
     answers: [
       { text: "Adds a new element to an array", correct: false },
       { text: "Finds the maximum element in an array", correct: false },
@@ -255,7 +109,7 @@ var questions = [
     ],
   },
   {
-    question: "What does the jQuery function 'toggleClass' do?",
+    question: "What does the JavaScript function 'toggleClass' do?",
     answers: [
       { text: "Toggles between adding and removing a class", correct: true },
       { text: "Adds a new class to an element", correct: false },
@@ -271,6 +125,178 @@ var questions = [
       { text: "const", correct: true },
       { text: "var", correct: false },
       { text: "assign", correct: false },
+    ],
+  },
+  {
+    question: "What is the purpose of the 'filter' function in JavaScript?",
+    answers: [
+      { text: "Sorts elements in an array", correct: false },
+      { text: "Filters elements based on a condition", correct: true },
+      { text: "Adds a new element to an array", correct: false },
+      { text: "Reverses the order of elements in an array", correct: false },
+    ],
+  },
+  {
+    question: "How do you declare a function in JavaScript?",
+    answers: [
+      { text: "function: myFunction() { }", correct: false },
+      { text: "declare function myFunction() { }", correct: false },
+      { text: "function myFunction() { }", correct: true },
+      { text: "var myFunction = function() { }", correct: false },
+    ],
+  },
+  {
+    question: "What does the 'typeof' operator in JavaScript do?",
+    answers: [
+      { text: "Checks if a variable is defined", correct: false },
+      { text: "Returns the type of a variable", correct: true },
+      { text: "Converts a variable to a boolean", correct: false },
+      { text: "Checks if a variable is null", correct: false },
+    ],
+  },
+  {
+    question: "What is an arrow function in JavaScript?",
+    answers: [
+      { text: "A function with arrow-shaped brackets", correct: false },
+      { text: "A function that uses the '=>'' syntax", correct: true },
+      { text: "A function with conditional statements", correct: false },
+      { text: "A function that returns a boolean value", correct: false },
+    ],
+  },
+  {
+    question: "How do you loop through elements in an array in JavaScript?",
+    answers: [
+      { text: "for (i = 0; i < array.length; i++)", correct: true },
+      { text: "while (i < array.length) { i++ }", correct: false },
+      { text: "foreach (element in array)", correct: false },
+      { text: "loop (array) { }", correct: false },
+    ],
+  },
+  {
+    question: "What does the 'this' keyword refer to in JavaScript?",
+    answers: [
+      { text: "Refers to the previous element", correct: false },
+      { text: "Refers to the parent element", correct: false },
+      { text: "Refers to the current element", correct: true },
+      { text: "Refers to the next element", correct: false },
+    ],
+  },
+  {
+    question:
+      "How can you prevent the default behavior of an event in JavaScript?",
+    answers: [
+      { text: "event.preventDefault()", correct: true },
+      { text: "event.stopDefault()", correct: false },
+      { text: "event.cancelDefault()", correct: false },
+      { text: "event.prevent()", correct: false },
+    ],
+  },
+  {
+    question: "What is the purpose of the 'splice' method in JavaScript?",
+    answers: [
+      { text: "Joins two arrays", correct: false },
+      {
+        text: "Removes elements from an array and, if necessary, inserts new elements in their place",
+        correct: true,
+      },
+      { text: "Sorts elements in an array", correct: false },
+      { text: "Reverses the order of elements in an array", correct: false },
+    ],
+  },
+  {
+    question: "How do you create a new object in JavaScript?",
+    answers: [
+      { text: "new Object()", correct: true },
+      { text: "createObject()", correct: false },
+      { text: "Object.create()", correct: false },
+      { text: "{}", correct: false },
+    ],
+  },
+  {
+    question: "What does the 'bind' method do in JavaScript?",
+    answers: [
+      { text: "Binds a function to a specific value or object", correct: true },
+      { text: "Creates a new function", correct: false },
+      { text: "Binds an event listener to an element", correct: false },
+      { text: "Binds a variable to a function", correct: false },
+    ],
+  },
+  {
+    question: "What is the purpose of the 'spread' operator in JavaScript?",
+    answers: [
+      { text: "Joins two arrays", correct: false },
+      {
+        text: "Copies the properties of one object to another object",
+        correct: true,
+      },
+      { text: "Performs mathematical operations", correct: false },
+      { text: "Converts a string to an array", correct: false },
+    ],
+  },
+  {
+    question: "What is the purpose of the 'reduce' method in JavaScript?",
+    answers: [
+      {
+        text: "Combines elements of an array into a single value",
+        correct: true,
+      },
+      { text: "Filters elements based on a condition", correct: false },
+      { text: "Sorts elements in an array", correct: false },
+      { text: "Adds a new element to an array", correct: false },
+    ],
+  },
+  {
+    question: "What is the purpose of the 'Promise' object in JavaScript?",
+    answers: [
+      {
+        text: "Represents a one-time event that will occur in the future",
+        correct: false,
+      },
+      {
+        text: "Represents a value that may be available now, or in the future, or never",
+        correct: false,
+      },
+      {
+        text: "Represents the eventual completion or failure of an asynchronous operation and its resulting value",
+        correct: true,
+      },
+      { text: "Represents a synchronous operation", correct: false },
+    ],
+  },
+  {
+    question: "What does the 'async' keyword do in JavaScript?",
+    answers: [
+      {
+        text: "Defines a function as asynchronous, allowing the use of the 'await' keyword",
+        correct: true,
+      },
+      { text: "Declares a variable as asynchronous", correct: false },
+      { text: "Creates an asynchronous event listener", correct: false },
+      {
+        text: "Enables asynchronous execution of the entire script",
+        correct: false,
+      },
+    ],
+  },
+  {
+    question: "How do you handle errors in asynchronous JavaScript code?",
+    answers: [
+      { text: "Using try-catch blocks", correct: true },
+      { text: "By ignoring errors", correct: false },
+      { text: "Using the 'finally' block", correct: false },
+      { text: "By logging errors to the console", correct: false },
+    ],
+  },
+  {
+    question: "What is the purpose of the 'fetch' API in JavaScript?",
+    answers: [
+      {
+        text: "Fetches resources from the server using asynchronous requests",
+        correct: true,
+      },
+      { text: "Fetches elements from the DOM", correct: false },
+      { text: "Fetches elements from an array", correct: false },
+      { text: "Fetches data from local storage", correct: false },
     ],
   },
 ];
