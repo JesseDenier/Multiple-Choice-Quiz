@@ -15,22 +15,15 @@ function shuffleArray(array) {
 }
 
 //Reloads the page.
-function returnFunc() {
+function reload() {
   location.reload();
 }
 
-// When returnBtn is clicked function reloadFunc begins.
-$("#returnBtn").on("click", returnFunc);
+// When Return button is clicked trigger the function reload.
+$("#returnBtn").on("click", reload);
 
-// Hides all other HTML elements and displays scores. Also builds out list from local storage.
-function displayScoresFunc() {
-  $("#quizEnd").hide();
-  $("#quiz").hide();
-  $("#quizStart").hide();
-  $("header").hide();
-  $("footer").hide();
-  $("#highScores").show();
-
+// Parces out highScores in local storage and adds each entry as a list item to highScoresList.
+function localStorageToList() {
   var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
   $("#highScoresList").empty();
   for (var i = 0; i < highScores.length; i++) {
@@ -45,11 +38,22 @@ function displayScoresFunc() {
   }
 }
 
-// When View High Scores is clicked function displayScoresFunc begins.
-$("#displayScores").on("click", displayScoresFunc);
+// Hides all other HTML elements and displays scores container. Triggers the function localStoragetoList.
+function displayScores() {
+  $("#quizEnd").hide();
+  $("#quiz").hide();
+  $("#quizStart").hide();
+  $("header").hide();
+  $("footer").hide();
+  $("#highScores").show();
+  localStorageToList();
+}
 
-// Adds your score, name, and date to local storage. Then calls the display Scores Function.
-function submitFunc(event) {
+// When View High Scores button is clicked trigger the function displayScores.
+$("#displayScores").on("click", displayScores);
+
+// Adds your score, name, and date to local storage. Triggers the function displayScores.
+function submit(event) {
   event.preventDefault();
   var userName = $("input[id='userName']").val();
   var date = new Date().toLocaleString();
@@ -61,31 +65,32 @@ function submitFunc(event) {
     points: points,
     date: date,
   };
-  // Get existing high scores from local storage or initialize an empty array
+  // Gets existing high scores from local storage or initialize an empty array.
   var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-  // Add the current user's points to the high scores array
+  // Adds the current user's name, points, and date to the high scores array.
   highScores.push(userData);
-  // Sort the high scores based on points in descending order
+  // Sorts the high scores based on points in descending order.
   highScores.sort(function (a, b) {
     return b.points - a.points;
   });
-  // Save the updated high scores array back to local storage
+  // Saves the updated high scores array back to local storage.
   localStorage.setItem("highScores", JSON.stringify(highScores));
-  // Clear the input field
+  // Clears the input field.
   $("input[id='userName']").val("");
-
-  displayScoresFunc();
+  displayScores();
 }
 
-// Hides questions and answers. Reveals the quizEnd container. Starts the submition function on click of created button.
-function quizEndFunc() {
+// When Submit button is clicked trigger the function submit.
+$("#submitBtn").on("click", submit);
+
+// Hides questions and answers. Reveals the quizEnd container.
+function quizEnd() {
   $("#quiz").hide();
   $("#quizEnd").show();
-  $("#submitBtn").on("click", submitFunc);
 }
 
-// Brings up the next question and answers, and assigns correct/incorrect values to the answers. When out of questions triggers the quiz end function.
-function nextQuestionFunc() {
+// Brings up a new question with answer choices. When out of questions triggers the function quizEnd.
+function nextQuestion() {
   if (questionNum < questions.length) {
     $("#questionContainer").text(questions[questionNum].question);
     $("#answerContainerA")
@@ -102,14 +107,14 @@ function nextQuestionFunc() {
       .attr("data-correct", questions[questionNum].answers[3].correct);
     questionNum++;
   } else {
-    quizEndFunc();
+    quizEnd();
     clearInterval(timerInterval);
     isTimerActive = false;
   }
 }
 
-// If timer is on, resets timer. Counts down from 60, displaying it in timeLeft. Triggers the quiz end function if timer runs out.
-function startTimerFunc() {
+// If timer is active, resets timer. If timer isn't active counts down from 60. When timer reaches 0 triggers the function quizEnd.
+function startTimer() {
   if (isTimerActive) {
     clearInterval(timerInterval);
   }
@@ -117,32 +122,38 @@ function startTimerFunc() {
     seconds--;
     $("#timeLeft").text(seconds);
     if (seconds <= 0) {
+      seconds = 0;
+      $("#timeLeft").text(seconds);
       clearInterval(timerInterval);
       isTimerActive = false;
-      quizEndFunc();
+      quizEnd();
     }
   }, 1000);
   isTimerActive = true;
 }
 
-// Resets the points, timer, and questions. Hides the preQuiz elements and shows the questions/answers. Finally triggers the timer, shuffle, and question functions.
-function startQuizFunc() {
+// Resets the points, timer, and questions. Sets the scoreNum equal to points.
+function reset() {
   points = 0;
+  $(".scoreNum").text(points);
   questionNum = 0;
   seconds = 60;
-  $(".scoreNum").text(points);
-  $("#quizStart").hide();
-  $("#quiz").show();
-  shuffleArray(questions);
-  nextQuestionFunc();
-  startTimerFunc();
 }
 
-// When startQuizBtn is clicked function startQuizFunc begins.
-$("#startQuizBtn").on("click", startQuizFunc);
+// Hides the preQuiz elements and shows the questions/answers. Triggers the functions reset, startTimer, shuffleArray, and nextQuestion.
+function startQuiz() {
+  $("#quizStart").hide();
+  $("#quiz").show();
+  reset();
+  shuffleArray(questions);
+  nextQuestion();
+  startTimer();
+}
 
-// The fadeOut functions were initially created by ChatGPT and adapted by Jesse Denier.
-// They create fixed HTML elements, drop the opacity, and delete them over .5 seconds to give animated feedback.
+// When Start Quiz button is clicked trigger the function startQuiz.
+$("#startQuizBtn").on("click", startQuiz);
+
+// Creates HTML elements, fades them out, and deletes them. Adapted from ChatGPT.
 function fadeOutCorrect() {
   var correctMessageEl = $("<h2>", {
     text: "Correct",
@@ -159,6 +170,7 @@ function fadeOutCorrect() {
   });
 }
 
+// Creates HTML elements, fades them out, and deletes them. Adapted from ChatGPT.
 function fadeOutWrong() {
   var wrongMessageEl = $("<h2>", {
     text: "Wrong",
@@ -175,8 +187,8 @@ function fadeOutWrong() {
   });
 }
 
-// Checks if answer is correct, adding +1 to score or -5 to timer, and triggering fadeOut functions. Then begins the Next Question Function.
-function checkAnswerFunc(event) {
+// If correct adds 1 to score, and triggers function fadeOutCorrect. If incorrect removes 5 from timer, and triggers function fadeOutWrong. Triggers the function nextQuestion.
+function checkAnswer(event) {
   if ($(event.target).data("correct")) {
     points++;
     $(".scoreNum").text(points);
@@ -186,10 +198,10 @@ function checkAnswerFunc(event) {
     $("#timeLeft").text(seconds);
     fadeOutWrong();
   }
-  nextQuestionFunc();
+  nextQuestion();
 }
 
-// When any answer is clicked function checkAnswerFunc begins.
+// When any button within the answer container is clicked trigger the function checkAnswer.
 $("#answerContainer").on("click", "button", function (event) {
-  checkAnswerFunc(event);
+  checkAnswer(event);
 });
