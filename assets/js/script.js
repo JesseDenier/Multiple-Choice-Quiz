@@ -92,19 +92,20 @@ function quizEnd() {
 // Brings up a new question with answer choices. When out of questions triggers the function quizEnd.
 function nextQuestion() {
   if (questionNum < questions.length) {
-    $("#questionContainer").text(questions[questionNum].question);
-    $("#answerContainerA")
-      .text(questions[questionNum].answers[0].text)
-      .attr("data-correct", questions[questionNum].answers[0].correct);
-    $("#answerContainerB")
-      .text(questions[questionNum].answers[1].text)
-      .attr("data-correct", questions[questionNum].answers[1].correct);
-    $("#answerContainerC")
-      .text(questions[questionNum].answers[2].text)
-      .attr("data-correct", questions[questionNum].answers[2].correct);
-    $("#answerContainerD")
-      .text(questions[questionNum].answers[3].text)
-      .attr("data-correct", questions[questionNum].answers[3].correct);
+    var currentQuestion = questions[questionNum];
+    $("#questionContainer").text(currentQuestion.question);
+    $("#answerA")
+      .text(currentQuestion.answers[0].text)
+      .attr("data-correct", currentQuestion.answers[0].correct);
+    $("#answerB")
+      .text(currentQuestion.answers[1].text)
+      .attr("data-correct", currentQuestion.answers[1].correct);
+    $("#answerC")
+      .text(currentQuestion.answers[2].text)
+      .attr("data-correct", currentQuestion.answers[2].correct);
+    $("#answerD")
+      .text(currentQuestion.answers[3].text)
+      .attr("data-correct", currentQuestion.answers[3].correct);
     questionNum++;
   } else {
     quizEnd();
