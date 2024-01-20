@@ -5,7 +5,7 @@ A multiple-choice quiz covering Javascript principles.
 ## Description
 
 Javascript with jQuery based multiple choice quiz project for UT Coding bootcamp. This shows my abilities with javascript and jQuery. This provides the user with randomly ordered questions, a timer, and a score which they can save.
-Here are screenshots of my completed work as of 1.19.24
+Here are screenshots of my completed work as of 1.20.24
 ![Quiz Start](<assets/imgs/Quiz Start.png>)
 ![Quiz Question](<assets/imgs/Quiz Question.png>)
 ![Quiz End Form](<assets/imgs/Quiz End Form.png>)
