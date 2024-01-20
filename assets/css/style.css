@@ -29,6 +29,13 @@ button:hover {
   background-color: rgb(245, 243, 235);
 }
 
+/* Prevents hover effect on touchscreen devices because it was sticking. */
+@media (hover: none) {
+  button:hover {
+    background-color: rgb(213, 202, 170);
+  }
+}
+
 ul {
   list-style-type: none;
   margin-left: 0;
