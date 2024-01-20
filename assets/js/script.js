@@ -154,6 +154,9 @@ function startQuiz() {
   $("#quizStart").hide();
   $("#quiz").show();
   reset();
+  for (let i = 0; i < questions.length; i++) {
+    shuffleArray(questions[i].answers);
+  }
   shuffleArray(questions);
   nextQuestion();
   startTimer();
