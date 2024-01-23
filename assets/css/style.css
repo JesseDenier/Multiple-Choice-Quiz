@@ -1,32 +1,10 @@
+/* Normalizes all CSS. */
 @import url(normalize.css);
 
+/* Fixes the links to look normal. */
 a {
   color: black;
   text-decoration: none;
-}
-
-body {
-  font-family: "Inconsolata", monospace;
-  margin: 0px;
-  background-color: rgb(229, 222, 202);
-  text-align: center;
-}
-
-h2 {
-  font-size: calc(1.25vw + 16px);
-}
-
-button {
-  margin: 10px;
-  background-color: rgb(213, 202, 170);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-button:hover {
-  background-color: rgb(245, 243, 235);
 }
 
 /* Prevents hover effect on touchscreen devices because it was sticking. */
@@ -36,80 +14,102 @@ button:hover {
   }
 }
 
-ul {
-  list-style-type: none;
-  margin-left: 0;
-  padding-left: 0;
+/* Sets font, and background for full document. */
+body {
+  font-family: "Inconsolata", monospace;
+  margin: 0px;
+  background-color: rgb(229, 222, 202);
 }
 
-footer {
+/* Makes h2 as large as h1. */
+h2 {
+  font-size: 32px;
+}
+
+/* Sets font size and position status of fixed-text. */
+.fixed-text {
   position: fixed;
-  bottom: 0;
-  margin-bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
+  font-size: calc(1.25vw + 16px);
+  font-weight: bold;
 }
 
-.timeLeft {
-  position: fixed;
-  top: 0;
-  right: 0;
-  margin-top: 20px;
-  margin-right: 20px;
-}
-
+/* Sets exact position of score. */
 .score {
-  position: fixed;
   top: 0;
   left: 0;
   margin-top: 20px;
   margin-left: 20px;
 }
 
-.fullScreenContainer {
+/* Sets exact position of timeLeft. */
+.timeLeft {
+  top: 0;
+  right: 0;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+/* Sets exact position of High Scores link*/
+footer {
+  bottom: 0;
+  left: 50%;
+  margin-bottom: 0px;
+  transform: translateX(-50%);
+}
+
+/* Sets custom defaults for buttons. */
+button {
+  margin: 10px;
+  background-color: rgb(213, 202, 170);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Sets custom defaults for button when hovered over. */
+button:hover {
+  background-color: rgb(245, 243, 235);
+}
+
+/* Centers all content within each article horizontally and vertically, and horizontal margins. */
+article {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  text-align: center;
   height: 100vh;
+  width: calc(100vw - 40px);
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
+/* Sets font size for opening explanation. */
 #quizStart p {
-  padding-left: 20px;
-  padding-right: 20px;
   font-size: calc(1vw + 11.5px);
 }
 
+/* Sets basic font for questions. */
 #questionContainer {
   font-family: Arial, Helvetica, sans-serif;
-  display: block;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
-#answerContainer {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
+/* Sets size and orientation of answers. */
 .answer {
   display: block;
   width: 40vw;
   min-width: 250px;
 }
 
-form {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
+/* Makes Enter Name text and Input appear on the same line and match style of other form elements. */
 .formLine2 {
   display: inline;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
+/* Moves button below formLine2 and centers it. */
 form button {
   display: block;
   margin-left: auto;

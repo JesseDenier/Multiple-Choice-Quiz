@@ -14,10 +14,10 @@
   </head>
   <body>
     <header>
-      <h2 class="score">Score:<span class="scoreNum">0</span></h2>
-      <h2 class="timeLeft">Time:<span id="timeLeft">60</span></h2>
+      <p class="score fixed-text">Score:<span class="scoreNum">0</span></p>
+      <p class="timeLeft fixed-text">Time:<span id="timeLeft">60</span></p>
     </header>
-    <article class="fullScreenContainer" id="quizStart">
+    <article id="quizStart">
       <h1>Javascript Quiz</h1>
       <p>
         Correct answer = +1 point<br />Wrong answer = -5 seconds<br />See how
@@ -25,7 +25,7 @@
       </p>
       <button id="startQuizBtn">Start Quiz</button>
     </article>
-    <article class="fullScreenContainer" id="quiz">
+    <article id="quiz">
       <div id="questionContainer"></div>
       <div id="answerContainer">
         <button class="answer" id="answerA"></button>
@@ -34,21 +34,21 @@
         <button class="answer" id="answerD"></button>
       </div>
     </article>
-    <article class="fullScreenContainer" id="quizEnd">
+    <article id="quizEnd">
       <form>
-        <h1>Game over: Your score is <span class="scoreNum">0</span>!</h1>
-        <h3 class="formLine2">Enter Name:</h3>
+        <h2>Game over: Your score is <span class="scoreNum">0</span>!</h2>
+        <p class="formLine2">Enter Name:</p>
         <input class="formLine2" autocomplete="name" id="userName" />
         <button id="submitBtn">Submit</button>
       </form>
     </article>
-    <article class="fullScreenContainer" id="highScores">
-      <h1>High Scores</h1>
+    <article id="highScores">
+      <h2>High Scores</h2>
       <ol id="highScoresList"></ol>
       <button id="returnBtn">Return</button>
     </article>
-    <footer>
-      <h2 id="displayScores">View High Scores</h2>
+    <footer class="fixed-text">
+      <p id="displayScores">View High Scores</p>
     </footer>
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
